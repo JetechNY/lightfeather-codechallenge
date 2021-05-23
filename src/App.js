@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+import Form from "./Form";
 
 function App() {
   const [values, setvalues] = useState({
@@ -48,6 +49,8 @@ function App() {
 
   return (
     <div className="form-container">
+      <Form/>
+      <header>Notification Form</header>
       <form className="register-form" onSubmit={handleSubmit}>
         {submitted && valid ? (
           <div className="success-message">

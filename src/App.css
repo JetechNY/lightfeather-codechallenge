@@ -2,6 +2,8 @@
   display: flex;
   background-color: aqua;
   align-items: center;
+  height: 100vh;
+  flex-direction: column;
 }
 
 .register-form {
