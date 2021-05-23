@@ -1,7 +1,7 @@
 export default function validateInfo(values) {
   let errors = {};
 
-  const regex = /[A-Za-z]/;
+  const regex = /^[a-zA-Z]+$/;
 
   if (!values.firstName.trim()) {
     errors.firstName = " First name is required";
