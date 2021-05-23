@@ -8,6 +8,7 @@ const useForm = (callback, validate) => {
     phoneNumber: "",
     supervisor: "",
   });
+
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -23,14 +24,6 @@ const useForm = (callback, validate) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (
-      values.firstName &&
-      values.lastName &&
-      (values.email || values.phoneNumber) &&
-      values.supervisor
-    ) {
-      setValid(true);
-    }
     setErrors(validate(values));
     setIsSubmitting(true);
   };
@@ -45,3 +38,4 @@ const useForm = (callback, validate) => {
 };
 
 export default useForm;
+

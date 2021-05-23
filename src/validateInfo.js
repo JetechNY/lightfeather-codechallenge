@@ -13,18 +13,17 @@ export default function validateInfo(values) {
     errors.lastName = "Enter a valid last name";
   }
 
-  // if (!values.email) {
-  //   errors.email = "Email required";
+  if (!values.email) {
+    errors.email = "Email required";
+  } else if (!/\S+@\S+\.\S+/.test(values.email)) {
+    errors.email = "Email address is invalid";
+  }
+
+  // if (!values.email || !values.phoneNumber) {
+  //   errors.email = " Please select email or text message";
   // } else if (!/\S+@\S+\.\S+/.test(values.email)) {
   //   errors.email = "Email address is invalid";
   // }
-
-  if (!values.email || !values.phoneNumber) {
-    errors.email = " Please pick email or text";
-  }
-  if (!/\S+@\S+\.\S+/.test(values.email)) {
-    errors.email = "Email address is invalid";
-  }
 
   if (!values.supervisor.trim()) {
     errors.supervisor = " Supervisor is required";
