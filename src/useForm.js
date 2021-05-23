@@ -24,10 +24,10 @@ const useForm = (callback, validate) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("sent values", values);
     setErrors(validate(values));
     setIsSubmitting(true);
 
+    console.log("sent values", values);
     if (!errors){
     fetch("https://6099a4760f5a13001721985c.mockapi.io/api/submit", {
       method: "POST",
@@ -43,9 +43,7 @@ const useForm = (callback, validate) => {
       .catch((error) => console.log("Error", error))
       .then((response) => console.log("Success", response));
     }
-
-
-    };
+  };
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {

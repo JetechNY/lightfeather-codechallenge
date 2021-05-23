@@ -29,9 +29,7 @@ const FormSubmit = ({ submitForm }) => {
       <div className="form-content">
         <header>Notification Form</header>
         <form className="register-form" onSubmit={handleSubmit} noValidate>
-          <div>
-            You have selected contact method {values.checked}
-          </div>
+
           <div>
             <label htmlFor="firstName" className="form-label">
               First Name
@@ -62,7 +60,9 @@ const FormSubmit = ({ submitForm }) => {
             />
             {errors.lastName && <p>{errors.lastName}</p>}
           </div>
-          <div className="contact-method">
+          {errors.checked && <p>{errors.checked}</p>}
+
+            <div className="contact-method">
             How would you prefer to be notified?
             <input
               id="email-checkbox"
@@ -111,6 +111,8 @@ const FormSubmit = ({ submitForm }) => {
               onChange={handleChange}
             />
             {errors.phoneNumber && <p>{errors.phoneNumber}</p>}
+            {errors.selection && <p>{errors.selection}</p>}
+
           </div>
 
           <div>
