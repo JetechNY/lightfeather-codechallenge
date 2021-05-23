@@ -28,7 +28,7 @@ const useForm = (callback, validate) => {
     setErrors(validate(values));
     setIsSubmitting(true);
 
-    if (errors.length = 0){
+    if (!errors){
     fetch("https://6099a4760f5a13001721985c.mockapi.io/api/submit", {
       method: "POST",
       headers: {
