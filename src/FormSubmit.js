@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import validate from "./validateInfo";
 import useForm from "./useForm";
 import "./Form.css";
@@ -9,13 +9,34 @@ const FormSubmit = ({ submitForm }) => {
     validate
   );
 
+  const [supervisor, setSupervisor] = useState({
+    supList: [],
+  });
+
+  useEffect(() => {
+    fetch("https://6099a4760f5a13001721985c.mockapi.io/api/supervisors")
+      .then((response) => response.json())
+      .then(
+        (data) => {
+          setSupervisor({ supList: data.results });
+          console.log(data.results);
+        });
+  },[]);
+
+  console.log("here",supervisor.supList)
+  // console.log(data.results[0].login.uuid)
+  // console.log(data.results[0].name.first)
+  // console.log(data.results[0].name.last)
+  
   return (
     <div>
       <div className="form-content">
         <header>Notification Form</header>
         <form className="register-form" onSubmit={handleSubmit} noValidate>
           <div>
-            <label className="form-label">First Name</label>
+            <label htmlFor="firstName" className="form-label">
+              First Name
+            </label>
             <input
               id="firstName"
               className="form-field"
@@ -28,7 +49,9 @@ const FormSubmit = ({ submitForm }) => {
             {errors.firstName && <p>{errors.firstName}</p>}
           </div>
           <div>
-            <label className="form-label">Last Name</label>
+            <label htmlFor="lastName" className="form-label">
+              Last Name
+            </label>
             <input
               id="lastName"
               className="form-field"
@@ -49,7 +72,10 @@ const FormSubmit = ({ submitForm }) => {
               placeholder="Email"
               name="email-checkbox"
             />
-            <label for="email-checkbox"> Email </label>
+            <label htmlFor="email" for="email-checkbox">
+              {" "}
+              Email{" "}
+            </label>
             <input
               id="email"
               type="email"
@@ -67,7 +93,10 @@ const FormSubmit = ({ submitForm }) => {
               placeholder="Phone Number"
               name="phoneNumber-checkbox"
             />
-            <label for="phoneNumber-checkbox"> Phone Number </label>
+            <label htmlFor="phoneNumber" for="phoneNumber-checkbox">
+              {" "}
+              Phone Number{" "}
+            </label>
             <input
               id="phoneNumber"
               className="form-field"
@@ -78,7 +107,9 @@ const FormSubmit = ({ submitForm }) => {
             />
           </div>
           <div>
-            <label className="form-label">Supervisor</label>
+            <label htmlFor="supervisor" className="form-label">
+              Supervisor
+            </label>
             <input
               id="supervisor"
               className="form-field"
@@ -90,6 +121,26 @@ const FormSubmit = ({ submitForm }) => {
             />
             {errors.supervisor && <p>{errors.supervisor}</p>}
           </div>
+
+          <div>
+            <label htmlFor="supervisorDropdown" className="form-label">
+              Supervisor Dropdown
+            </label>
+            <select>
+              <option disabled selected>
+                -- Select --
+              </option>
+              {/* {
+                <option> </option>
+                supList.map(x => {
+                  return(
+                    <option title={x.login.uuid}> {x.name.firstName}</option>
+                  )
+                })
+              } */}
+            </select>
+          </div>
+
           <div>
             <button class="form-field" type="submit">
               Submit
