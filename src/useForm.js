@@ -8,6 +8,7 @@ const useForm = (callback, validate) => {
     email: "",
     phoneNumber: "",
     supervisor: "",
+    checked: "1",
   });
 
   const [errors, setErrors] = useState({});
@@ -27,6 +28,7 @@ const useForm = (callback, validate) => {
     setErrors(validate(values));
     setIsSubmitting(true);
 
+    if (errors.length = 0){
     fetch("https://6099a4760f5a13001721985c.mockapi.io/api/submit", {
       method: "POST",
       headers: {
@@ -40,7 +42,10 @@ const useForm = (callback, validate) => {
       })
       .catch((error) => console.log("Error", error))
       .then((response) => console.log("Success", response));
-  };
+    }
+
+
+    };
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {

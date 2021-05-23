@@ -30,6 +30,9 @@ const FormSubmit = ({ submitForm }) => {
         <header>Notification Form</header>
         <form className="register-form" onSubmit={handleSubmit} noValidate>
           <div>
+            You have selected contact method {values.checked}
+          </div>
+          <div>
             <label htmlFor="firstName" className="form-label">
               First Name
             </label>
@@ -63,10 +66,13 @@ const FormSubmit = ({ submitForm }) => {
             How would you prefer to be notified?
             <input
               id="email-checkbox"
-              type="checkbox"
+              type="radio"
+              onChange={handleChange}
+
+              value="email"
               className="form-field"
               placeholder="Email"
-              name="email-checkbox"
+              name="checked"
             />
             <label htmlFor="email" for="email-checkbox">
               {" "}
@@ -86,10 +92,13 @@ const FormSubmit = ({ submitForm }) => {
           <div>
             <input
               id="phoneNumber-checkbox"
-              type="checkbox"
+              type="radio"
+              value="phone"
+              onChange={handleChange}
+
               className="form-field"
               placeholder="Phone Number"
-              name="phoneNumber-checkbox"
+              name="checked"
             />
             <label htmlFor="phoneNumber" for="phoneNumber-checkbox">
               {" "}
