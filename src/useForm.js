@@ -11,6 +11,8 @@ const useForm = (callback, validate) => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const [valid, setValid] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({
@@ -21,7 +23,14 @@ const useForm = (callback, validate) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    if (
+      values.firstName &&
+      values.lastName &&
+      (values.email || values.phoneNumber) &&
+      values.supervisor
+    ) {
+      setValid(true);
+    }
     setErrors(validate(values));
     setIsSubmitting(true);
   };
