@@ -23,10 +23,25 @@ const useForm = (callback, validate) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("sent values", values);
     setErrors(validate(values));
     setIsSubmitting(true);
 
+    fetch("https://6099a4760f5a13001721985c.mockapi.io/api/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        values,
+      }),
+    })
+    .then((data) => {
+      console.log(data)
+    })
   };
+
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
@@ -38,4 +53,3 @@ const useForm = (callback, validate) => {
 };
 
 export default useForm;
-

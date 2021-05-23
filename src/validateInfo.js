@@ -1,15 +1,17 @@
 export default function validateInfo(values) {
   let errors = {};
 
+  const regex = /[A-Za-z]/;
+
   if (!values.firstName.trim()) {
     errors.firstName = " First name is required";
-  } else if (!/^[A-Za-z]+/.test(values.firstName.trim())) {
+  } else if (!regex.test(values.firstName.trim())) {
     errors.firstName = "Enter a valid first name";
   }
 
   if (!values.lastName.trim()) {
     errors.lastName = " Last name is required";
-  } else if (!/^[A-Za-z]+/.test(values.lastName.trim())) {
+  } else if (!regex.test(values.lastName.trim())) {
     errors.lastName = "Enter a valid last name";
   }
 
@@ -19,17 +21,19 @@ export default function validateInfo(values) {
     errors.email = "Email address is invalid";
   }
 
-  // if (!values.email || !values.phoneNumber) {
-  //   errors.email = " Please select email or text message";
-  // } else if (!/\S+@\S+\.\S+/.test(values.email)) {
-  //   errors.email = "Email address is invalid";
-  // }
-
-  if (!values.supervisor.trim()) {
-    errors.supervisor = " Supervisor is required";
-  } else if (!/^[A-Za-z]+/.test(values.supervisor.trim())) {
-    errors.supervisor = "Please select your Supervisor";
+  if (!values.phoneNumber.trim()) {
+    var pattern = new RegExp(/^[0-9\b]+$/);
+    if (!pattern.test(values.phoneNumber.trim())) {
+      errors.phoneNumber = "Please enter only numbers.";
+    } else if (values.phoneNumber.length != 10) {
+      errors.phoneNumber = "Please enter valid phone number.";
+    }
   }
+
+  if (!values.supervisor) {
+    errors.supervisor = " Supervisor is required";
+  }
+
 
   return errors;
 }

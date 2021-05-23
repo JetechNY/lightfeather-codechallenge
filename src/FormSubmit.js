@@ -16,18 +16,14 @@ const FormSubmit = ({ submitForm }) => {
   useEffect(() => {
     fetch("https://6099a4760f5a13001721985c.mockapi.io/api/supervisors")
       .then((response) => response.json())
-      .then(
-        (data) => {
-          setSupervisor({ supList: data.results });
-          console.log(data.results);
-        });
-  },[]);
+      .then((data) => {
+        setSupervisor({ supList: data.results });
+        console.log(data.results);
+      });
+  }, []);
 
-  console.log("here",supervisor.supList)
-  // console.log(data.results[0].login.uuid)
-  // console.log(data.results[0].name.first)
-  // console.log(data.results[0].name.last)
-  
+  console.log("here", supervisor.supList);
+
   return (
     <div>
       <div className="form-content">
@@ -86,6 +82,8 @@ const FormSubmit = ({ submitForm }) => {
               onChange={handleChange}
             />
             {errors.email && <p>{errors.email}</p>}
+          </div>
+          <div>
             <input
               id="phoneNumber-checkbox"
               type="checkbox"
@@ -105,40 +103,27 @@ const FormSubmit = ({ submitForm }) => {
               value={values.phoneNumber}
               onChange={handleChange}
             />
-          </div>
-          <div>
-            <label htmlFor="supervisor" className="form-label">
-              Supervisor
-            </label>
-            <input
-              id="supervisor"
-              className="form-field"
-              placeholder="Supervisor"
-              name="supervisor"
-              // type="text" change to dropdown
-              value={values.supervisor}
-              onChange={handleChange}
-            />
-            {errors.supervisor && <p>{errors.supervisor}</p>}
+            {errors.phoneNumber && <p>{errors.phoneNumber}</p>}
           </div>
 
           <div>
             <label htmlFor="supervisorDropdown" className="form-label">
-              Supervisor Dropdown
+              Supervisor
             </label>
-            <select>
+            {/* supervisor.supList */}
+            <select id="supervisor" name="supervisor" onChange={handleChange}>
               <option disabled selected>
                 -- Select --
               </option>
-              {/* {
-                <option> </option>
-                supList.map(x => {
-                  return(
-                    <option title={x.login.uuid}> {x.name.firstName}</option>
-                  )
-                })
-              } */}
+              {supervisor.supList.map((x) => {
+                return (
+                  <option value={x.login.uuid}>
+                    {x.name.first} {x.name.last}
+                  </option>
+                );
+              })}
             </select>
+            {errors.supervisor && <p>{errors.supervisor}</p>}
           </div>
 
           <div>
