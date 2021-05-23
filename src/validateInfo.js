@@ -35,5 +35,7 @@ export default function validateInfo(values) {
     errors.supervisor = " Supervisor is required";
   }
 
+
+  
   return errors;
 }
