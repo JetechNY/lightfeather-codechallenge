@@ -21,19 +21,19 @@ export default function validateInfo(values) {
     errors.email = "Email address is invalid";
   }
 
-  if (!values.phoneNumber.trim()) {
-    var pattern = new RegExp(/^[0-9\b]+$/);
-    if (!pattern.test(values.phoneNumber.trim())) {
-      errors.phoneNumber = "Please enter only numbers.";
-    } else if (values.phoneNumber.length != 10) {
-      errors.phoneNumber = "Please enter valid phone number.";
-    }
+  if (!values.phoneNumber) {
+    errors.phoneNumber = "Please enter valid phone number.";
+  }
+  var pattern = new RegExp(/^[0-9\b]+$/);
+  if (!pattern.test(values.phoneNumber)) {
+    errors.phoneNumber = "Please enter only numbers.";
+  } else if (values.phoneNumber.length != 10) {
+    errors.phoneNumber = "Please enter valid phone number.";
   }
 
   if (!values.supervisor) {
     errors.supervisor = " Supervisor is required";
   }
-
 
   return errors;
 }
