@@ -33,15 +33,14 @@ const useForm = (callback, validate) => {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify({
-        values,
-      }),
+      body: JSON.stringify(values),
     })
-    .then((data) => {
-      console.log(data)
-    })
+      .then((res) => {
+        res.json();
+      })
+      .catch((error) => console.log("Error", error))
+      .then((response) => console.log("Success", response));
   };
-
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
