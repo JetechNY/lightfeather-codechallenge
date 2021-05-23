@@ -68,7 +68,6 @@ const FormSubmit = ({ submitForm }) => {
               id="email-checkbox"
               type="radio"
               onChange={handleChange}
-
               value="email"
               className="form-field"
               placeholder="Email"
@@ -95,7 +94,6 @@ const FormSubmit = ({ submitForm }) => {
               type="radio"
               value="phone"
               onChange={handleChange}
-
               className="form-field"
               placeholder="Phone Number"
               name="checked"

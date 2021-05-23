@@ -8,7 +8,7 @@ const useForm = (callback, validate) => {
     email: "",
     phoneNumber: "",
     supervisor: "",
-    checked: "1",
+    checked: "",
   });
 
   const [errors, setErrors] = useState({});
